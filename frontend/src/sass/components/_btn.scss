@@ -1,0 +1,51 @@
+.btn {
+	font-size: 1.2rem;
+	font-weight: 500;
+	padding: 0.7rem 2rem;
+	border-radius: 5rem;
+	-webkit-border-radius: 5rem;
+	-moz-border-radius: 5rem;
+	-ms-border-radius: 5rem;
+	-o-border-radius: 5rem;
+	transition: 0.2s all;
+	-webkit-transition: 0.2s all;
+	-moz-transition: 0.2s all;
+	-ms-transition: 0.2s all;
+	-o-transition: 0.2s all;
+	border: 2px solid $color-primary-dark;
+
+	&:hover {
+		background-color: $color-primary-dark;
+		color: white;
+		box-shadow: 1rem 1rem 2rem rgba(71, 66, 66, 0.212);
+	}
+
+	&--primary {
+		background-color: $color-primary;
+		color: white;
+	}
+
+	&--rectangle {
+		border-radius: 2px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		-ms-border-radius: 2px;
+		-o-border-radius: 2px;
+	}
+
+	&--disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&--black {
+		background-color: black;
+		color: white;
+		border: none;
+	}
+
+	&:disabled {
+		background-color: grey;
+		color: white;
+	}
+}

@@ -1,0 +1,57 @@
+@import '../base/animations';
+
+.loader {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	&--square {
+		perspective: 200px;
+	}
+
+	&--bouncer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: flex-end;
+	}
+
+	&__square {
+		position: absolute;
+		top: 0;
+		height: 50%;
+		width: 50%;
+		background-color: coral;
+		animation: flipLoaderAnimation 2s linear infinite;
+		-webkit-animation: flipLoaderAnimation 2s linear infinite;
+		transform-origin: right bottom;
+
+		&:nth-child(2) {
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s;
+			opacity: -0.5;
+		}
+	}
+
+	&__spinner {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border: 10px solid transparent;
+		border-top-color: $color-primary;
+		border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		-ms-border-radius: 50%;
+		-o-border-radius: 50%;
+		animation: spinLoaderAnimation1 1.2s linear infinite;
+		-webkit-animation: spinLoaderAnimation1 1.2s linear infinite;
+
+		&:nth-child(2) {
+			border: 10px solid transparent;
+			border-bottom-color: $color-primary;
+			animation: spinLoaderAnimation2 1.2s linear infinite;
+			-webkit-animation: spinLoaderAnimation2 1.2s linear infinite;
+		}
+	}
+}

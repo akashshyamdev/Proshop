@@ -1,0 +1,37 @@
+.cart {
+	color: $text-color-dark-1;
+
+	&__product {
+		.row {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			width: 100%;
+		}
+	}
+
+	&__product-name {
+		font-family: 'Lato';
+		font-size: 1.5rem;
+	}
+
+	&__product-price {
+		font-size: 1.3rem;
+		text-align: center;
+	}
+
+	&__product-delete {
+		border: none;
+		background-color: transparent;
+		font-size: 1.7rem;
+		transition: 0.2s all;
+		-webkit-transition: 0.2s all;
+		-moz-transition: 0.2s all;
+		-ms-transition: 0.2s all;
+		-o-transition: 0.2s all;
+
+		&:hover {
+			font-size: 2rem;
+		}
+	}
+}

@@ -1,0 +1,21 @@
+.rating {
+	.fa-star {
+		font-size: 1.2rem;
+		color: rgba(102, 102, 102, 0.712);
+	}
+
+	.fas.fa-star,
+	.fas.fa-star-half-alt {
+		font-size: 1.2rem;
+		color: $color-primary;
+	}
+
+	&__star {
+		margin-right: 5px;
+		font-size: 1.2rem;
+
+		&--empty {
+			color: rgba(102, 102, 102, 0.712) !important;
+		}
+	}
+}

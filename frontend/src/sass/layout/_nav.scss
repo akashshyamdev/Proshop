@@ -1,0 +1,21 @@
+.nav {
+	i {
+		color: $color-primary;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__link {
+		color: white !important;
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	&__logo {
+		color: $color-primary !important;
+		font-family: 'Potta One';
+		letter-spacing: 5px;
+	}
+}
