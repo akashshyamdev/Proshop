@@ -18,3 +18,7 @@
 @import 'layout/nav';
 
 @import 'vendors/jquery.exzoom.scss';
+
+.dropdown > a {
+	color: white !important;
+}

@@ -1,4 +1,12 @@
-import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT } from '../constants/userConstants.js';
+import {
+	USER_LOGIN_FAIL,
+	USER_LOGIN_REQUEST,
+	USER_LOGIN_SUCCESS,
+	USER_LOGOUT,
+	USER_REGISTER_FAIL,
+	USER_REGISTER_REQUEST,
+	USER_REGISTER_SUCCESS,
+} from '../constants/userConstants.js';
 
 export function userLoginReducer(initialState = {}, action) {
 	switch (action.type) {
@@ -9,6 +17,23 @@ export function userLoginReducer(initialState = {}, action) {
 			return { loading: false, userInfo: action.payload };
 
 		case USER_LOGIN_FAIL:
+			return { loading: false, error: action.payload };
+		case USER_LOGOUT:
+			return {};
+		default:
+			return initialState;
+	}
+}
+
+export function userRegisterReducer(initialState = {}, action) {
+	switch (action.type) {
+		case USER_REGISTER_REQUEST:
+			return { loading: true };
+
+		case USER_REGISTER_SUCCESS:
+			return { loading: false, userInfo: action.payload };
+
+		case USER_REGISTER_FAIL:
 			return { loading: false, error: action.payload };
 		case USER_LOGOUT:
 			return {};

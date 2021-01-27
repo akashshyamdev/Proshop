@@ -1,5 +1,5 @@
 import express from 'express';
-import { login, getUser, signup } from '../controllers/userController.js';
+import { login, getUser, signup, updateUser } from '../controllers/userController.js';
 import protectMiddleware from '../middleware/protectMiddleware.js';
 
 const router = express.Router();
@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/login', login);
 router.post('/signup', signup);
 
-router.route('/profile').get(protectMiddleware, getUser);
+router.route('/profile').get(protectMiddleware, getUser).patch(protectMiddleware, updateUser);
 
 // @description - Fetch one producs
 // @route - GET/api/products/:id

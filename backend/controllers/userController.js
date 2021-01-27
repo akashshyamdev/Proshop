@@ -68,7 +68,7 @@ export async function signup({ body }, res, next) {
 }
 
 // @description - Get user profile
-// @route - GET/api/users/profile
+// @route - GET /api/users/profile
 // @access - private
 
 export async function getUser({ user }, res, next) {
@@ -78,6 +78,43 @@ export async function getUser({ user }, res, next) {
 				status: 'sucess',
 				data: {
 					user,
+				},
+			});
+		} else {
+			res.status(401).json({
+				status: 'error',
+				message: 'User not found.',
+			});
+		}
+	} catch (error) {
+		next(new AppError(error.message, 401));
+	}
+}
+
+// @description - Get user profile
+// @route - PATCH /api/users/profile
+// @access - private
+
+export async function updateUser({ user, body }, res, next) {
+	try {
+		if (user) {
+			user.name = body.name || user.name;
+			user.email = body.email || user.email;
+
+			if (body.password) {
+				user.body.password = req.body.password;
+			}
+
+			const updatedUser = await user.save();
+
+			res.json({
+				status: 'sucess',
+				data: {
+					_id: updateUser._id,
+					name: updateUser.name,
+					email: updateUser.email,
+					isAdmin: updateUser.isAdmin,
+					token: generateToken(updateUser._id),
 				},
 			});
 		} else {
