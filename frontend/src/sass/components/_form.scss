@@ -16,14 +16,15 @@
 	&__input {
 		width: 100%;
 		padding: 1rem 1.5rem;
-		padding-left: 6rem;
+		padding-left: 5rem;
 		font-size: 1.2rem;
+		background-color: #fafafa;
 		border: 2px solid $color-primary;
-		border-radius: 2rem;
-		-webkit-border-radius: 2rem;
-		-moz-border-radius: 2rem;
-		-ms-border-radius: 2rem;
-		-o-border-radius: 2rem;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-ms-border-radius: 3px;
+		-o-border-radius: 3px;
 
 		&:focus {
 			outline: none;

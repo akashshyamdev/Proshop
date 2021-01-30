@@ -41,7 +41,7 @@ export default function Login({ location, history }) {
 						Email
 					</label>
 					<label htmlFor="email" className="form__label form__label--inner">
-						<i class="fas fa-envelope"></i>
+						<i className="fas fa-envelope"></i>
 					</label>
 				</FormGroup>
 
@@ -52,7 +52,7 @@ export default function Login({ location, history }) {
 						Password
 					</label>
 					<label htmlFor="password" className="form__label form__label--inner">
-						<i class="fas fa-key"></i>
+						<i className="fas fa-key"></i>
 					</label>
 				</FormGroup>
 

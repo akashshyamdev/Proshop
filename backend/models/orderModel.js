@@ -17,7 +17,7 @@ const orderSchema = new mongoose.Schema(
 					type: Number,
 					required: true,
 				},
-				image: {
+				cover: {
 					type: String,
 					required: true,
 				},
@@ -85,24 +85,19 @@ const orderSchema = new mongoose.Schema(
 				deliveredAt: Date,
 			},
 		],
-		price: {
-			type: Number,
-			required: true,
-		},
+		// price: {
+		// 	type: Number,
+		// 	required: true,
+		// },
 		countInStock: {
 			type: Number,
 			required: true,
 			default: 0,
 		},
-		delivery: {
-			type: String,
-			required: true,
-		},
-		images: {
-			type: [String],
-			required: true,
-			validate: [(val) => val.length > 0, 'Please provide atleast 1 image'],
-		},
+		// delivery: {
+		// 	type: String,
+		// 	required: true,
+		// },
 		specs: {
 			type: Object,
 			required: function () {

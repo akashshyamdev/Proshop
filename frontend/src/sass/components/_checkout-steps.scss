@@ -1,0 +1,21 @@
+.checkout-steps {
+	&__link {
+		font-family: 'Montserrat';
+		font-weight: 700;
+		font-size: 1.2rem;
+		color: $text-color-dark-1;
+
+		&--disabled {
+			font-weight: 400;
+			color: $text-color-light-1 !important;
+		}
+
+		&--active {
+			color: $color-primary;
+		}
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+}

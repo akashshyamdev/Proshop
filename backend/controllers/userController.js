@@ -110,11 +110,11 @@ export async function updateUser({ user, body }, res, next) {
 			res.json({
 				status: 'sucess',
 				data: {
-					_id: updateUser._id,
-					name: updateUser.name,
-					email: updateUser.email,
-					isAdmin: updateUser.isAdmin,
-					token: generateToken(updateUser._id),
+					_id: updatedUser._id,
+					name: updatedUser.name,
+					email: updatedUser.email,
+					isAdmin: updatedUser.isAdmin,
+					token: generateToken(updatedUser._id),
 				},
 			});
 		} else {

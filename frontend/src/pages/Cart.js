@@ -25,8 +25,6 @@ export default function Cart({ match, location, history }) {
 		history.push('/login?redirect=shipping');
 	}
 
-	console.log(cartItems);
-
 	return (
 		<Row>
 			<Col md={8}>
