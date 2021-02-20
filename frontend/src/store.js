@@ -3,19 +3,32 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { productListReducer, productDetailsReducer } from './reducers/productReducers.js';
 import { cartReducer } from './reducers/cartReducers.js';
-import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateDetailsReducer } from './reducers/userReducers.js';
-import { orderCreateReducer, orderDetailsReducer } from './reducers/orderReducers';
+import {
+	userLoginReducer,
+	userRegisterReducer,
+	userDetailsReducer,
+	userUpdateDetailsReducer,
+	userListReducer,
+	userDeleteReducer,
+	userUpdateReducer,
+} from './reducers/userReducers.js';
+import { myOrdersReducer, orderCreateReducer, orderDetailsReducer, orderPaymentReducer } from './reducers/orderReducers';
 
 const reducer = combineReducers({
-  productList: productListReducer,
-  productDetails: productDetailsReducer,
-  cart: cartReducer,
-  userLogin: userLoginReducer,
-  userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer,
-  userUpdateDetails: userUpdateDetailsReducer,
-  orderCreate: orderCreateReducer,
-  orderDetails: orderDetailsReducer,
+	productList: productListReducer,
+	productDetails: productDetailsReducer,
+	cart: cartReducer,
+	userLogin: userLoginReducer,
+	userRegister: userRegisterReducer,
+	userDetails: userDetailsReducer,
+	userUpdate: userUpdateReducer,
+	userUpdateDetails: userUpdateDetailsReducer,
+	userList: userListReducer,
+	userDelete: userDeleteReducer,
+	orderCreate: orderCreateReducer,
+	orderDetails: orderDetailsReducer,
+	orderPayment: orderPaymentReducer,
+	myOrders: myOrdersReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
@@ -23,8 +36,8 @@ const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localS
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {};
 
 const initialState = {
-  cart: { cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage },
-  userLogin: { userInfo: userInfoFromStorage },
+	cart: { cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage },
+	userLogin: { userInfo: userInfoFromStorage },
 };
 
 const middleware = [thunk];

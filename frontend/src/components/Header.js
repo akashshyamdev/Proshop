@@ -45,6 +45,21 @@ export default function Header() {
 								</Nav.Link>
 							</LinkContainer>
 						)}
+						{userInfo && userInfo.isAdmin && (
+							<NavDropdown title="Admin" id="adminMenu">
+								<LinkContainer to="/userlist">
+									<NavDropdown.Item>Users</NavDropdown.Item>
+								</LinkContainer>
+
+								<LinkContainer to="/productlist">
+									<NavDropdown.Item>Products</NavDropdown.Item>
+								</LinkContainer>
+
+								<LinkContainer to="/orderlist">
+									<NavDropdown.Item>Orders</NavDropdown.Item>
+								</LinkContainer>
+							</NavDropdown>
+						)}
 					</Nav>
 				</NavbarCollapse>
 			</Navbar>

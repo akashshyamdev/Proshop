@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Form, FormGroup, Button, Row, Col } from 'react-bootstrap';
+import { Form, FormGroup, Button, Row, Col, Table } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message.js';
 import Loader from '../components/Loader.js';
 import { getUserDetails, updateUserDetails } from '../actions/userActions';
+import { getMyOrders } from '../actions/orderActions';
+import moment from 'moment';
 
 export default function Profile({ location, history }) {
 	const [name, setName] = useState('');
@@ -11,6 +14,10 @@ export default function Profile({ location, history }) {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setconfirmPassword] = useState('');
 	const [message, setMessage] = useState(null);
+
+	window.moment = moment;
+
+	const dates = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
 	const dispatch = useDispatch();
 
@@ -23,6 +30,9 @@ export default function Profile({ location, history }) {
 	const userUpdateDetails = useSelector((state) => state.userUpdateDetails);
 	const { success } = userUpdateDetails;
 
+	const myOrders = useSelector((state) => state.myOrders);
+	const { loading: loadingOrders, error: errorOrders, orders } = myOrders;
+	window.order = orders;
 	useEffect(() => {
 		if (!userInfo) {
 			history.push('/login');
@@ -30,11 +40,18 @@ export default function Profile({ location, history }) {
 			if (!user) {
 				dispatch(getUserDetails('profile'));
 			} else {
+				dispatch(getMyOrders());
 				setName(user.name);
 				setEmail(user.email);
 			}
 		}
 	}, [dispatch, history, userInfo, user]);
+
+	const prepareDate = (date) => {
+		const momentDate = moment(date);
+
+		return `${dates[momentDate.month()]} ${momentDate.date()}, ${momentDate.year()}`;
+	};
 
 	function submitHandler(e) {
 		e.preventDefault();
@@ -123,8 +140,42 @@ export default function Profile({ location, history }) {
 				</Form>
 			</Col>
 
-			<Col md={8}>
+			<Col md={8} className="pl-4">
 				<h2 className="heading-secondary mt-4">My Orders</h2>
+				{loadingOrders ? (
+					<Loader />
+				) : errorOrders ? (
+					<Message variant="danger">{errorOrders}</Message>
+				) : (
+					<Table striped bordered hover responsive className="table-sm mt-3">
+						<thead>
+							<tr>
+								<th>Payment</th>
+								<th>Date</th>
+								<th>Total</th>
+								<th>Paid</th>
+								<th>Delivered</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{orders?.map((order, i) => (
+								<tr key={i}>
+									<td className="text-uppercase">{order.paymentMethod}</td>
+									<td>{prepareDate(order.createdAt)}</td>
+									<td>${order.totalPrice}</td>
+									<td>{order.isPaid ? prepareDate(order.paidAt) : <i className="fas fa-times" style={{ color: '#EF0000' }} />}</td>
+									<td>{order.isDelivered ? prepareDate(order.deliveredAt) : <i className="fas fa-times" style={{ color: '#EF0000' }} />}</td>
+									<td>
+										<LinkContainer to={`/order/${order._id}`}>
+											<Button>Details</Button>
+										</LinkContainer>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</Table>
+				)}
 			</Col>
 		</Row>
 	);

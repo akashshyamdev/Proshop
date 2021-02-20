@@ -1,28 +1,28 @@
-import Product from '../models/productModel.js';
-import AppError from '../utils/AppError.js';
+const Product = require('../models/productModel.js');
+const AppError = require('../utils/AppError.js');
 
 // @description - Fetch all producs
 // @route - GET/api/products
 // @access - public
 
-export async function getAllProducts(req, res, next) {
+module.exports.getAllProducts = async function (req, res, next) {
 	try {
 		const products = await Product.find();
 
 		res.status(200).json({
-			status: 'sucess',
+			status: 'success',
 			data: { products },
 		});
 	} catch (error) {
 		next(new AppError(error.message, 500));
 	}
-}
+};
 
 // @description - Fetch one producs
 // @route - GET/api/products/:id
 // @access - public
 
-export async function getProduct(req, res, next) {
+module.exports.getProduct = async function (req, res, next) {
 	try {
 		const product = await Product.findById(req.params.id);
 
@@ -33,11 +33,11 @@ export async function getProduct(req, res, next) {
 			});
 		} else {
 			res.status(200).json({
-				status: 'sucess',
+				status: 'success',
 				data: { product },
 			});
 		}
 	} catch (error) {
 		next(new AppError(error.message, 500));
 	}
-}
+};

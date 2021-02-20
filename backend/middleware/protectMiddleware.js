@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/userModel.js';
-import AppError from '../utils/AppError.js';
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel.js');
+const AppError = require('../utils/AppError.js');
 
-export default async function protectMiddleware(req, res, next) {
+module.exports = async function protectMiddleware(req, res, next) {
 	try {
 		let token;
 
@@ -30,4 +30,4 @@ export default async function protectMiddleware(req, res, next) {
 	} catch (error) {
 		next(new AppError(error.message, 401));
 	}
-}
+};

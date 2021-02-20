@@ -7,18 +7,26 @@ import { Link } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
 
 export default function PlaceOrder({ history }) {
-	const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
-	const dispatch = useDispatch();
-	const createdOrder = useSelector((state) => state.orderCreate);
-	const { order, error, success } = createdOrder;
 	const cart = useSelector((state) => state.cart);
-	const { shippingAddress, paymentMethod, cartItems } = cart;
-	const { address, city, postalCode, country } = shippingAddress;
 
-	cart.itemsPrice = addDecimals(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
-	cart.shippingPrice = addDecimals(cart.itemsPrice > 200 ? 5 : 10);
-	cart.taxPrice = addDecimals(parseFloat(0.15 * cart.itemsPrice).toFixed(2));
-	cart.totalPrice = (parseInt(cart.itemsPrice) + parseInt(cart.shippingPrice) + parseInt(cart.taxPrice)).toFixed(2);
+	const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
+
+	cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
+	cart.shippingPrice = addDecimals(cart.itemsPrice < 200 ? 10 : 0);
+	cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
+	cart.totalPrice = addDecimals(parseInt(cart.itemsPrice) + parseFloat(cart.shippingPrice) + Number(cart.taxPrice));
+
+	const dispatch = useDispatch();
+
+	const orderCreate = useSelector((state) => state.orderCreate);
+	const { order, success, error } = orderCreate;
+
+	useEffect(() => {
+		if (success) {
+			history.push(`/order/${order._id}`);
+		}
+		// eslint-disable-next-line
+	}, [history, success]);
 
 	const placeOrderHandler = () => {
 		dispatch(
@@ -34,13 +42,6 @@ export default function PlaceOrder({ history }) {
 		);
 	};
 
-	useEffect(() => {
-		console.log(order);
-		if (success === true && order) {
-			history.push(`/order/${order._id}`);
-		}
-	});
-
 	return (
 		<>
 			<CheckoutSteps step1 step2 step3 step4 active="step4"></CheckoutSteps>
@@ -52,7 +53,7 @@ export default function PlaceOrder({ history }) {
 							<h2 className="heading-secondary">Shipping</h2>
 							<p className="lead">
 								<strong>Address: &nbsp;</strong>
-								{address}, {city}, {postalCode}, {country}
+								{cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
 							</p>
 						</ListGroupItem>
 
@@ -60,7 +61,7 @@ export default function PlaceOrder({ history }) {
 							<h2 className="heading-secondary">Payment Method</h2>
 							<p className="lead">
 								<strong>Method: &nbsp;</strong>
-								{paymentMethod}
+								{cart.paymentMethod}
 							</p>
 						</ListGroupItem>
 

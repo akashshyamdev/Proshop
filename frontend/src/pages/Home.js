@@ -16,8 +16,6 @@ export default function Home() {
 		dispatch(listProducts());
 	}, [dispatch]);
 
-	console.log(products);
-
 	return (
 		<div>
 			<h1 className="heading-primary text-primary text-center mt-3 mb-4">LATEST &nbsp; PRODUCTS</h1>

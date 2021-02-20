@@ -95,3 +95,100 @@ export default function Cart({ match, location, history }) {
 		</Row>
 	);
 }
+
+// <>
+// 	<h1>Order {order._id}</h1>
+
+// 	<Row>
+// 		<Col md={8}>
+// 			<ListGroup variant="flush">
+// 				<ListGroupItem>
+// 					<h2 className="heading-secondary">Shipping</h2>
+// 					<p className="lead">
+// 						<strong>Address: &nbsp;</strong>
+// 						{order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}, {order.shippingAddress.country}
+// 					</p>
+// 				</ListGroupItem>
+
+// 				<ListGroupItem>
+// 					<h2 className="heading-secondary">Payment Method</h2>
+// 					<p className="lead">
+// 						<strong>Method: &nbsp;</strong>
+// 						{order.paymentMethod}
+// 					</p>
+// 				</ListGroupItem>
+
+// 				<ListGroupItem>
+// 					<h2 className="heading-secondary">Items</h2>
+// 					{order.items.length === 0 ? (
+// 						<Message children="">Your cart is empty</Message>
+// 					) : (
+// 						<ListGroup variant="flush" className="cart">
+// 							{order.items.map((item, i) => (
+// 								<ListGroupItem key={i} className="cart__product">
+// 									<Row>
+// 										<Col md={1} className="cart__product-image m-0 p-0">
+// 											<Image src={item.cover} alt={item.name} fluid round />
+// 										</Col>
+
+// 										<Col md={3} className="cart__product-name ml-2" style={{ color: 'rgb(83, 83, 83)' }}>
+// 											<Link to={`/products/${item.product}/`}>{item.name}</Link>
+// 										</Col>
+
+// 										<Col md={4}>
+// 											<p className="lead">
+// 												{item.quantity} x ${item.price} = ${item.price * item.quantity}
+// 											</p>
+// 										</Col>
+// 									</Row>
+// 								</ListGroupItem>
+// 							))}
+// 						</ListGroup>
+// 					)}
+// 				</ListGroupItem>
+// 			</ListGroup>
+// 		</Col>
+
+// 		<Col md={3}>
+// 			<Card>
+// 				<ListGroup>
+// 					<ListGroupItem>
+// 						<h2 className="heading-secondary">Order Summary</h2>
+// 					</ListGroupItem>
+
+// 					<ListGroupItem>
+// 						<Row>
+// 							<Col>Items</Col>
+// 							<Col>${order.cart.itemsPrice}</Col>
+// 						</Row>
+// 					</ListGroupItem>
+
+// 					<ListGroupItem>
+// 						<Row>
+// 							<Col>Shipping</Col>
+// 							<Col>${order.cart.shippingPrice}</Col>
+// 						</Row>
+// 					</ListGroupItem>
+
+// 					<ListGroupItem>
+// 						<Row>
+// 							<Col>Tax</Col>
+// 							<Col>${order.cart.taxPrice}</Col>
+// 						</Row>
+// 					</ListGroupItem>
+
+// 					<ListGroupItem>
+// 						<Row>
+// 							<Col>Total</Col>
+// 							<Col>${order.cart.totalPrice}</Col>
+// 						</Row>
+// 					</ListGroupItem>
+
+// 					<ListGroupItem>{error && <Message variant="danger">{error}</Message>}</ListGroupItem>
+
+// 					<ListGroupItem></ListGroupItem>
+// 				</ListGroup>
+// 			</Card>
+// 		</Col>
+// 	</Row>
+// </>

@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"server": "nodemon backend/server.js",
 		"client": "npm start --prefix frontend",
@@ -25,7 +24,8 @@
 		"express-async-handler": "^1.1.4",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.11.12",
-		"prop-types": "^15.7.2"
+		"prop-types": "^15.7.2",
+		"stripe": "^7.63.1"
 	},
 	"devDependencies": {
 		"eslint": "^7.18.0",

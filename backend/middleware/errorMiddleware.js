@@ -1,9 +1,9 @@
-function notFound(req, res, next) {
+module.exports.notFound = function (req, res, next) {
 	const error = new Error(`Not Found -  ${req.originalUrl}`);
 	next(error);
-}
+};
 
-function errorHandler(err, req, res, next) {
+module.exports.errorHandler = function (err, req, res, next) {
 	const error = res.statusCode === 200 ? 500 : res.statusCode;
 
 	res.status(error);
@@ -12,6 +12,4 @@ function errorHandler(err, req, res, next) {
 		message: err.message,
 		stack: process.env.NODE_ENV === 'production' ? null : err.stack,
 	});
-}
-
-export { errorHandler, notFound };
+};

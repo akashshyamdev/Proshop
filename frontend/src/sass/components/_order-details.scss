@@ -1,0 +1,151 @@
+.order-details {
+	color: $text-color-dark-1;
+	font-family: 'Lato';
+
+	&__heading {
+		font-weight: 700;
+	}
+
+	&__address {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 20px;
+
+		&-image {
+			height: 45px;
+			background-color: rgb(250, 246, 246);
+			padding: 10px 20px;
+			border-radius: 5px;
+		}
+
+		&-primary {
+			font-weight: 700;
+			font-size: 1rem;
+		}
+
+		&-secondary {
+			font-size: 0.8rem;
+
+			color: $text-color-dark-2;
+		}
+	}
+
+	&__location {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__payment {
+		margin-bottom: 20px;
+
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-family: 'Montserrat';
+		}
+
+		&-image {
+			width: 140px;
+			height: 45px;
+			background-color: rgb(250, 246, 246);
+			padding: 10px 20px;
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			-ms-border-radius: 5px;
+			-o-border-radius: 5px;
+		}
+
+		&-status,
+		&-method {
+			font-family: 'Lato';
+			font-weight: 700;
+			font-size: 1rem;
+		}
+	}
+
+	&__info {
+		font-family: 'Montserrat';
+
+		&-title {
+			color: $text-color-dark-2;
+		}
+
+		&-value {
+			color: $text-color-dark-1;
+			font-weight: 400;
+		}
+
+		&-total {
+			color: $text-color-dark-1;
+			font-weight: 700;
+			font-size: 1.2rem;
+		}
+
+		&-value,
+		&-total {
+			margin-right: -40px;
+		}
+	}
+
+	&__product {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		background-color: rgb(250, 246, 246);
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		-ms-border-radius: 10px;
+		-o-border-radius: 10px;
+
+		&:not(&:last-child) {
+			margin-bottom: 50px;
+		}
+
+		&-container {
+			list-style-type: none !important;
+		}
+
+		&-image {
+			border-radius: 10px;
+			border-top-right-radius: 0px !important;
+			border-bottom-right-radius: 0px !important;
+			width: 100px;
+			height: 100px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			-ms-border-radius: 10px;
+			-o-border-radius: 10px;
+		}
+
+		&-name {
+			font-weight: 600;
+			font-size: 1.3rem;
+			letter-spacing: 1px;
+			color: $text-color-dark-1 !important;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&-price {
+			font-size: 1.1rem;
+			font-weight: 500;
+		}
+	}
+
+	&__paypal {
+		& > div {
+			width: 67% !important;
+		}
+	}
+
+	&__stripe {
+		& > form {
+			width: 67%;
+		}
+	}
+}

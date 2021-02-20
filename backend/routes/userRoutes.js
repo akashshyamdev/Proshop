@@ -1,20 +1,23 @@
-import express from 'express';
-import { login, getUser, signup, updateUser } from '../controllers/userController.js';
-import protectMiddleware from '../middleware/protectMiddleware.js';
+const express = require('express');
+const { login, getUser, signup, updateUser, getAllUsers, deleteUser, getUserById, updateUserById } = require('../controllers/userController.js');
+const { getMyOrders } = require('../controllers/orderController');
+const protectMiddleware = require('../middleware/protectMiddleware.js');
+const restrictMiddleware = require('../middleware/restrictMiddleware.js');
 
 const router = express.Router();
-
-// @description - authenticate user and get a token
-// @route - POST /api/users/login
-// @access - public
 
 router.post('/login', login);
 router.post('/signup', signup);
 
-router.route('/profile').get(protectMiddleware, getUser).patch(protectMiddleware, updateUser);
+router.use(protectMiddleware);
 
-// @description - Fetch one producs
-// @route - GET/api/products/:id
-// @access - public
+// BUG: NOT SURE BUT USED TO WORK FINE WITH THE BELOW 2 ROUTES AT THE BOTTOM
+router.route('/orders').get(getMyOrders);
+router.route('/profile').get(getUser).patch(updateUser);
 
-export default router;
+router.use(restrictMiddleware);
+
+router.route('/').get(getAllUsers);
+router.route('/:id').get(getUserById).patch(updateUserById).delete(deleteUser);
+
+module.exports = router;
