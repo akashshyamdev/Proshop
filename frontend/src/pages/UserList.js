@@ -24,7 +24,6 @@ export default function UserList({ history }) {
 		} else {
 			history.push('/login');
 		}
-		// eslint-disable-next-line
 	}, [dispatch, history, successDelete, userInfo]);
 
 	const deleteHandler = (id) => {

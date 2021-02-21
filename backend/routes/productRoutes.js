@@ -1,18 +1,12 @@
 const express = require('express');
-const { getAllProducts, getProduct } = require('../controllers/productController.js');
+const protectMiddleware = require('../middleware/protectMiddleware.js');
+const restrictMiddleware = require('../middleware/restrictMiddleware.js');
+const { getAllProducts, getProduct, deleteProduct, createProduct, updateProduct } = require('../controllers/productController.js');
 
 const router = express.Router();
 
-// @description - Fetch all producs
-// @route - GET/api/products
-// @access - public
+router.route('/').get(getAllProducts).post(protectMiddleware, restrictMiddleware, createProduct);
 
-router.get('/', getAllProducts);
-
-// @description - Fetch one producs
-// @route - GET/api/products/:id
-// @access - public
-
-router.get('/:id', getProduct);
+router.route('/:id').get(getProduct).patch(protectMiddleware, restrictMiddleware, updateProduct).delete(protectMiddleware, restrictMiddleware, deleteProduct);
 
 module.exports = router;

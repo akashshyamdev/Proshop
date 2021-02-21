@@ -8,7 +8,8 @@
 		"client": "npm start --prefix frontend",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"data:import": "node backend/seeder -i",
-		"data:delete": "node backend/seeder -d"
+		"data:delete": "node backend/seeder -d",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 	},
 	"keywords": [],
 	"author": "",
@@ -24,6 +25,7 @@
 		"express-async-handler": "^1.1.4",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.11.12",
+		"multer": "^1.4.2",
 		"prop-types": "^15.7.2",
 		"stripe": "^7.63.1"
 	},
@@ -32,5 +34,5 @@
 		"eslint-config-airbnb-base": "^14.2.1",
 		"eslint-plugin-import": "^2.22.1",
 		"morgan": "^1.10.0"
-	}
+	},
 }

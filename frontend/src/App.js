@@ -14,6 +14,8 @@ import PlaceOrder from './pages/PlaceOrder';
 import Order from './pages/Order';
 import UserList from './pages/UserList';
 import UserEdit from './pages/UserEdit';
+import ProductList from './pages/ProductList';
+import ProductEdit from './pages/ProductEdit';
 
 function App({ match }) {
 	return (
@@ -28,11 +30,13 @@ function App({ match }) {
 				<Route path="/shipping" component={Shipping} />
 				<Route path="/cart/:id?" component={Cart} />
 				<Route path="/admin/user/:id/edit" component={UserEdit} />
+				<Route path="/admin/product/:id/edit" component={ProductEdit} />
 				<Route path="/userlist" component={UserList} />
 				<Route path="/profile" component={Profile} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
 				<Route path="/product/:id" component={ProductDetails} />
+				<Route path="/productlist" component={ProductList} />
 				<Route exact path="/" component={Home} />
 			</main>
 

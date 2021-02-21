@@ -1,5 +1,5 @@
 const express = require('express');
-const morgan = require('morgan');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const productRoutes = require('./routes/productRoutes.js');
@@ -9,8 +9,6 @@ const checkoutRoutes = require('./routes/checkoutRoutes');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware.js');
 
 const app = express();
-
-app.use(morgan('dev'));
 
 app.use(cors());
 
@@ -24,6 +22,11 @@ app.use('/api/checkout', checkoutRoutes);
 app.get('/api/config/paypal', (req, res) => {
 	res.send(process.env.PAYPAL_CLIENT_ID);
 });
+
+const dirname = path.resolve();
+
+app.use(express.static(path.join(dirname, '/frontend/build')));
+app.get('*', (req, res) => res.sendFile(path.resolve(dirname, 'frontend', 'build', 'index.html')));
 
 app.use(notFound);
 

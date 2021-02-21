@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema(
 		},
 		category: {
 			type: String,
-			enum: ['Electronics', 'Clothing'],
+			enum: ['Electronics', 'Clothing', 'Furniture', 'sample'],
 			required: true,
 		},
 		color: {
@@ -31,7 +31,6 @@ const productSchema = new mongoose.Schema(
 		description: {
 			type: String,
 			required: true,
-			minlength: 30,
 		},
 		rating: {
 			type: Number,
@@ -95,4 +94,6 @@ const productSchema = new mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;

@@ -8,7 +8,7 @@ import FormContainer from '../components/FormContainer.js';
 import { getUserDetails, updateUser } from '../actions/userActions';
 import { USER_UPDATE_RESET } from '../constants/userConstants';
 
-export default function Register({ history, match }) {
+export default function UserEdit({ history, match }) {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [isAdmin, setIsAdmin] = useState('');
