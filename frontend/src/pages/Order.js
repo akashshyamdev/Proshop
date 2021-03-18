@@ -198,9 +198,6 @@ const OrderScreen = ({ match }) => {
 									<Loader />
 								) : (
 									<>
-										<button className="order-details__pay" role="link" onClick={handleClick}>
-											Pay Now
-										</button>
 										<PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
 									</>
 								)}
